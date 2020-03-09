@@ -1,0 +1,2 @@
+alias poll="npm run watch-poll"
+alias phpunit="/var/www/html/vendor/bin/phpunit"

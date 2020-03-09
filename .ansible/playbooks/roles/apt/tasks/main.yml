@@ -1,0 +1,31 @@
+# Apt packages
+- name: Install apt packages
+  action: apt pkg={{item}}
+  with_items:
+    - apache2
+    - mysql-server
+    - php7.2
+    - php7.2-dev
+    - php7.2-mbstring
+    - php7.2-soap
+    - php7.2-cli
+    - php7.2-common
+    - php7.2-curl
+    - php7.2-mysql
+    - php7.2-xml
+    - php7.2-zip
+    - php7.2-intl
+    - git
+    - python-mysqldb
+    - postfix
+    - build-essential
+    - nodejs
+    - zip
+    - unzip
+
+- name: Install yarn
+  npm:
+    name: yarn
+    global: yes
+    state: present
+

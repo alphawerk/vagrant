@@ -1,0 +1,15 @@
+---
+- hosts: all
+  vars_files:
+    - vars/all.yml
+  roles:
+    - nodejs
+    - apt
+    - mysql
+    - apache
+    - composer
+    - app
+
+#  # Perform these actions as root
+  become: yes
+  become_user: root

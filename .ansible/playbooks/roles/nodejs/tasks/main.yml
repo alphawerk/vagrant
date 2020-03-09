@@ -1,0 +1,13 @@
+# Install nodejs
+- name: Download node repo file
+  get_url:
+    url: http://deb.nodesource.com/setup_12.x
+    dest: /tmp/node_setup
+  tags: nodejs
+
+- name: Add node repo to apt
+  command: bash /tmp/node_setup
+  args:
+    creates: /etc/apt/sources.list.d/nodesource.list
+  tags: nodejs
+

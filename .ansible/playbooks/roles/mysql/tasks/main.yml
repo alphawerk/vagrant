@@ -1,0 +1,12 @@
+# Configure mysql-server
+- name: Create local DB
+  mysql_db:
+    name: vagrant
+
+- name: Create admin db user
+  mysql_user:
+    name: vagrant
+    password: vagrant
+    priv: '*.*:ALL'
+    state: present
+

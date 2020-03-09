@@ -1,0 +1,30 @@
+# Configure apache2
+- name: Enable mod_vhost_alias, mod_rewrite, mod_ssl
+  action: apache2_module name={{item}}
+  with_items:
+    - vhost_alias
+    - rewrite
+    - ssl
+
+- name: Install apache config
+  template: src=/vagrant/{{ item }}
+    dest=/etc/apache2/sites-available/{{ item }}
+  with_items:
+    - default-ssl.conf
+    - default.conf
+
+- name: Disable default HTTP vhost
+  command: a2dissite 000-default
+
+- name: enable live apache2 default and 'localhost' site config
+  file: src=/etc/apache2/sites-available/{{ item.split('/')[-1] }}
+    dest=/etc/apache2/sites-enabled/{{ item.split('/')[-1] }}
+    state=link
+  with_items:
+    - default-ssl.conf
+    - default.conf
+
+- name: Restart apache2
+  service:
+    name: apache2
+    state: restarted
